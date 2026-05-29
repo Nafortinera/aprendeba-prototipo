@@ -6558,121 +6558,61 @@ ${tablas}
      MÓDULO AYUDA — Asistente Virtual AprendeBA
   ============================================================ */
 
-  const AYUDA_KB = {
-    matriculacion: {
-      keys: ['matricul','inscript'],
-      resp: `<b>Proceso de matriculación</b><br>
-1. Accedé a <b>Matriculación → Inscriptos</b>.<br>
-2. Buscá al estudiante en el listado.<br>
-3. Hacé clic en el selector de <b>Sección</b> — solo se muestran secciones del nivel del alumno.<br>
-4. Una vez asignada la sección, hacé clic en <b>Matricular</b> e ingresá la <b>FEM</b> (Fecha Efectiva de Matriculación).<br>
-5. El alumno pasará automáticamente a la solapa <b>Matriculados</b>.`
-    },
-    asistencia: {
-      keys: ['asistencia','asistir','presente','ausente','tomar','presentismo'],
-      resp: `<b>Registro de asistencia</b><br>
-1. Ingresá al módulo <b>Presentismo → Toma de asistencia</b>.<br>
-2. Seleccioná el <b>año</b> y la <b>sección</b>.<br>
-3. Hacé clic en cualquier píldora de la grilla para registrar el estado del alumno.<br>
-4. Los días futuros están bloqueados automáticamente.<br>
-5. Para cargar varios alumnos con el mismo estado, hacé clic en el encabezado del día (carga masiva).`
-    },
-    qr: {
-      keys: ['qr','código qr','codigos','generar qr'],
-      resp: `<b>Generación de QRs</b><br>
-1. Ingresá al módulo <b>QRs para alumnos</b>.<br>
-2. Seleccioná el <b>aula / sección</b>.<br>
-3. Se generan automáticamente los QRs individuales de cada alumno.<br>
-4. Hacé clic en <b>Imprimir QRs del aula</b> para obtener la hoja lista para imprimir.<br>
-Cada QR contiene el nombre y DNI del alumno.`
-    },
-    kiosco: {
-      keys: ['kiosco','entrada','escaneo','escanear','scanner'],
-      resp: `<b>Kiosco de entrada</b><br>
-1. Ingresá al módulo <b>Kiosco</b>.<br>
-2. Hacé clic en <b>Iniciar toma de asistencia</b>.<br>
-3. Los alumnos escanean su QR con la cámara del dispositivo.<br>
-4. Al escanear un QR válido, el sistema registra <b>Presente</b> y muestra el nombre del alumno.<br>
-5. Hacé clic en <b>Detener</b> para finalizar la sesión.`
-    },
-    legajo: {
-      keys: ['legajo','datos personal','editar alumno','responsable','salud','residencia'],
-      resp: `<b>Edición del legajo</b><br>
-1. En <b>Matriculados</b>, hacé clic en el menú ⋮ del alumno → <b>Ver legajo</b>.<br>
-2. El legajo tiene 5 secciones editables: <b>Identificación, Residencia, Responsable 1, Responsable 2 y Salud</b>.<br>
-3. Hacé clic en <b>✎ Editar</b> en cualquier card, modificá los campos y guardá.<br>
-4. Los cambios se guardan de forma individual por card.`
-    },
-    fem: {
-      keys: ['fem','fecha efectiva','fecha de matriculación'],
-      resp: `<b>FEM — Fecha Efectiva de Matriculación</b><br>
-Es la fecha en que el estudiante quedó oficialmente matriculado en el establecimiento.<br><br>
-<b>Reglas:</b><br>
-• No puede ser una fecha futura.<br>
-• Es obligatoria para completar la matriculación.<br>
-• Se ingresa desde el calendario personalizado al confirmar la matriculación del inscripto.`
-    },
-    dni: {
-      keys: ['dni','documento','dígito','cuántos dígitos'],
-      resp: `<b>DNI — Validaciones</b><br>
-• El DNI debe tener entre <b>7 y 8 dígitos</b> numéricos.<br>
-• No se aceptan puntos, guiones ni espacios.<br>
-• El campo rechaza automáticamente caracteres no numéricos.<br>
-• Para otros tipos de documento (Pasaporte, Cédula, etc.) el campo es alfanumérico libre.`
-    },
-    cuil: {
-      keys: ['cuil','cuit','número de cuil','calcul'],
-      resp: `<b>CUIL — Cálculo automático</b><br>
-El sistema calcula el CUIL automáticamente cuando ingresás el DNI y el género.<br><br>
-<b>Prefijo según género:</b><br>
-• <b>20</b> → Masculino &nbsp;• <b>27</b> → Femenino &nbsp;• <b>23</b> → No binario / Prefiero no decir<br><br>
-El dígito verificador se calcula con los multiplicadores <b>[5,4,3,2,7,6,5,4,3,2]</b>.<br>
-Si el CUIL está vacío, el sistema lo pre-completa en verde para que lo revises antes de guardar.`
-    },
-    estados: {
-      keys: ['estado','presente','ausente','ingreso tardío','retiro','no corresponde','it','ra','nc'],
-      resp: `<b>Estados de asistencia</b><br>
-<span style="display:inline-block;background:#dcfce7;color:#16a34a;padding:2px 7px;border-radius:4px;font-weight:700;font-size:12px;">P</span> <b>Presente</b><br>
-<span style="display:inline-block;background:#fee2e2;color:#dc2626;padding:2px 7px;border-radius:4px;font-weight:700;font-size:12px;">A</span> <b>Ausente</b><br>
-<span style="display:inline-block;background:#ffedd5;color:#ea580c;padding:2px 7px;border-radius:4px;font-weight:700;font-size:12px;">IT</span> <b>Ingreso tardío</b><br>
-<span style="display:inline-block;background:#f3e8ff;color:#7c3aed;padding:2px 7px;border-radius:4px;font-weight:700;font-size:12px;">RA</span> <b>Retiro anticipado</b><br>
-<span style="display:inline-block;background:#f1f5f9;color:#64748b;padding:2px 7px;border-radius:4px;font-weight:700;font-size:12px;">NC</span> <b>No corresponde</b><br>
-<span style="display:inline-block;background:#f8fafc;color:#94a3b8;padding:2px 7px;border-radius:4px;font-weight:700;font-size:12px;">—</span> <b>Sin tomar</b>`
-    },
-    justificado: {
-      keys: ['justificad','celeste','color celeste'],
-      resp: `<b>Justificado — Modificador visual</b><br>
-Justificado <b>no es un estado</b>, es un modificador que aplica sobre <b>A, IT o RA</b>.<br><br>
-Cuando marcás una asistencia como justificada, la píldora mantiene su badge original (A / IT / RA) pero cambia a <span style="background:#E0F2FE;color:#0369A1;padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px;">celeste</span>, indicando que fue justificado.<br><br>
-Para justificar: hacé clic en la píldora → elegí el estado → seleccioná <b>"Marcar como justificado"</b> al pie del picker.`
-    },
-    seccion: {
-      keys: ['secci','mover','cambio de secci','cambiar secci'],
-      resp: `<b>Cambio de sección</b><br>
-En la solapa <b>Matriculados</b>, cada alumno tiene un botón con su sección actual en la columna "Cambio de sección".<br><br>
-Al hacer clic, se despliega un picker que muestra <b>únicamente las secciones del mismo nivel</b> del alumno.<br>
-La sección actual aparece marcada con ✓.<br>
-Al seleccionar otra sección se actualiza el registro del alumno.`
-    },
-    establecimiento: {
-      keys: ['establecimiento','escuela','cfp','cambiar establecimiento'],
-      resp: `<b>Cambio de establecimiento</b><br>
-En la cabecera del módulo Matriculación aparece la tarjeta del establecimiento activo con nombre, dependencia, ciclo y matrícula.<br><br>
-Hacé clic en <b>"⇄ Cambiar establecimiento"</b> para ver la red de escuelas.<br>
-Al seleccionar otro establecimiento, toda la información de la cabecera se actualiza en tiempo real.`
-    },
-    default: `No encontré información específica sobre eso en mi base de conocimiento. Te sugiero revisar el panel de inicio rápido o contactar a soporte en <b>sstedu@buenosaires.gob.ar</b>.`
-  };
+  // ===== MÓDULO AYUDA: Asistente Virtual =====
+  const AYUDA_KB = [
+    { keys: ['matricul','inscript'],
+      resp: '<b>Proceso de matriculación</b><br>1. Andá a <b>Matriculación → Inscriptos</b>.<br>2. Buscá al estudiante.<br>3. Seleccioná la <b>Sección</b> (filtrada por nivel).<br>4. Hacé clic en <b>Matricular</b> e ingresá la <b>FEM</b>.<br>5. El alumno pasa a la solapa <b>Matriculados</b>.' },
+    { keys: ['asistencia','asistir','presente','ausente','presentismo','tomar'],
+      resp: '<b>Registro de asistencia</b><br>1. Ingresá al módulo <b>Presentismo</b>.<br>2. Seleccioná año y sección.<br>3. Hacé clic en la píldora del día para cambiar el estado.<br>4. Los días futuros están bloqueados.<br>5. Clic en el encabezado del día para carga masiva.' },
+    { keys: ['qr','codigo qr','generar qr','codigos'],
+      resp: '<b>Generación de QRs</b><br>1. Ingresá al módulo <b>QRs para alumnos</b>.<br>2. Seleccioná el aula / sección.<br>3. Se generan los QRs individuales automáticamente.<br>4. Hacé clic en <b>Imprimir QRs del aula</b> para obtener la hoja lista para imprimir.' },
+    { keys: ['kiosco','entrada','escaneo','escanear','scanner'],
+      resp: '<b>Kiosco de entrada</b><br>1. Ingresá al módulo <b>Kiosco</b>.<br>2. Hacé clic en <b>Iniciar toma de asistencia</b>.<br>3. Los alumnos escanean su QR con la cámara.<br>4. El sistema registra <b>Presente</b> y muestra el nombre.<br>5. Hacé clic en <b>Detener</b> para finalizar.' },
+    { keys: ['legajo','datos personal','editar alumno','responsable','salud','residencia'],
+      resp: '<b>Edición del legajo</b><br>1. En <b>Matriculados</b>, clic en ⋮ → <b>Ver legajo</b>.<br>2. El legajo tiene 5 secciones: <b>Identificación, Residencia, Responsable 1, Responsable 2, Salud</b>.<br>3. Hacé clic en <b>Editar</b>, modificá y guardá.<br>4. Los cambios se guardan por card.' },
+    { keys: ['fem','fecha efectiva','fecha de matriculacion','fecha matricul'],
+      resp: '<b>FEM — Fecha Efectiva de Matriculación</b><br>Es la fecha en que el alumno quedó oficialmente matriculado.<br><br>• No puede ser una fecha futura.<br>• Es obligatoria para completar la matriculación.<br>• Se ingresa con el calendario al confirmar.' },
+    { keys: ['dni','documento','digitos','cuantos digitos'],
+      resp: '<b>DNI — Validaciones</b><br>• El DNI debe tener entre <b>7 y 8 dígitos</b> numéricos.<br>• No se permiten letras ni puntos.<br>• El campo admite solo números.' },
+    { keys: ['cuil','clave unica'],
+      resp: '<b>CUIL — Cálculo automático</b><br>El sistema calcula el CUIL a partir del DNI y el género:<br>• <b>20-</b>XXXXXXXX-D → Masculino<br>• <b>27-</b>XXXXXXXX-D → Femenino<br>• <b>23-</b>XXXXXXXX-D → No binario<br>El dígito verificador se calcula automáticamente.' },
+    { keys: ['estado','estados','presencia','ausente sin aviso','retiro','ingreso tardio'],
+      resp: '<b>Estados de asistencia</b><br>• 🟢 <b>Presente</b>: asistió en horario.<br>• 🔴 <b>Ausente</b>: no asistió sin aviso.<br>• 🟡 <b>Ingreso tardío</b>: llegó tarde.<br>• 🔵 <b>Retiro anticipado</b>: se retiró antes.<br>• ⚪ <b>No corresponde</b>: día sin clase.<br>• ⬛ <b>Sin tomar</b>: aún no registrado.' },
+    { keys: ['justificado','justificar','justificacion'],
+      resp: '<b>Justificado</b><br>Es un modificador que se aplica sobre un estado de ausencia. No reemplaza el estado: simplemente lo marca como justificado.<br><br>Se activa desde el picker de estado con el botón <b>"Justificado"</b>.' },
+    { keys: ['seccion','cambiar seccion','mover alumno'],
+      resp: '<b>Cambio de sección</b><br>En <b>Matriculados</b>, cada alumno tiene el botón <b>Mover</b> en la columna de sección.<br>Al hacer clic, se despliegan las secciones disponibles para ese nivel.<br>Seleccioná la nueva sección para reasignar al alumno.' },
+    { keys: ['establecimiento','escuela','cambiar establecimiento'],
+      resp: '<b>Cambio de establecimiento</b><br>Usá el selector <b>"Cambiar establecimiento"</b> en la barra superior de la app para cambiar de escuela sin cerrar sesión.' }
+  ];
+
+  function _norm(s) {
+    return s.toLowerCase()
+      .replace(/[áàä]/g,'a').replace(/[éèë]/g,'e')
+      .replace(/[íìï]/g,'i').replace(/[óòö]/g,'o')
+      .replace(/[úùü]/g,'u').replace(/ñ/g,'n');
+  }
+
+  function ayudaBuscarRespuesta(txt) {
+    var q = _norm(txt);
+    for (var i = 0; i < AYUDA_KB.length; i++) {
+      var entry = AYUDA_KB[i];
+      for (var j = 0; j < entry.keys.length; j++) {
+        if (q.indexOf(_norm(entry.keys[j])) !== -1) return entry.resp;
+      }
+    }
+    return 'No encontré información específica sobre eso. Revisá los accesos del panel lateral o contactá soporte.';
+  }
 
   function ayudaHora() {
-    const d = new Date();
-    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+    var d = new Date();
+    return ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
   }
 
   function ayudaAgregarMsg(texto, tipo) {
-    const wrap = document.getElementById('chat-messages');
-    if (!wrap) return;
-    const div = document.createElement('div');
+    var wrap = document.getElementById('chat-messages');
+    if (!wrap) return null;
+    var div = document.createElement('div');
     div.className = 'chat-msg ' + tipo;
     div.innerHTML = '<div class="chat-bubble">' + texto + '</div><div class="chat-time">' + ayudaHora() + '</div>';
     wrap.appendChild(div);
@@ -6681,9 +6621,9 @@ Al seleccionar otro establecimiento, toda la información de la cabecera se actu
   }
 
   function ayudaTyping() {
-    const wrap = document.getElementById('chat-messages');
+    var wrap = document.getElementById('chat-messages');
     if (!wrap) return null;
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     div.className = 'chat-msg asistente chat-typing';
     div.innerHTML = '<div class="chat-bubble"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
     wrap.appendChild(div);
@@ -6691,53 +6631,38 @@ Al seleccionar otro establecimiento, toda la información de la cabecera se actu
     return div;
   }
 
-  function ayudaBuscarRespuesta(txt) {
-    const q = txt.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-    for (const key of Object.keys(AYUDA_KB)) {
-      if (key === 'default') continue;
-      const entry = AYUDA_KB[key];
-      if (entry.keys.some(k => q.includes(k.normalize('NFD').replace(/[̀-ͯ]/g,'')))) {
-        return entry.resp;
-      }
-    }
-    return AYUDA_KB.default;
-  }
-
   function ayudaFaq(pregunta) {
-    const input = document.getElementById('chat-input');
+    var input = document.getElementById('chat-input');
     if (input) input.value = '';
     ayudaAgregarMsg(pregunta, 'usuario');
-    const typing = ayudaTyping();
-    setTimeout(() => {
-      if (typing) typing.remove();
+    var typing = ayudaTyping();
+    setTimeout(function() {
+      try { if (typing && typing.parentNode) typing.parentNode.removeChild(typing); } catch(e) {}
       ayudaAgregarMsg(ayudaBuscarRespuesta(pregunta), 'asistente');
-    }, 800);
-    // Ocultar sugerencias tras primera interacción
-    const sug = document.getElementById('chat-suggestions');
+    }, 700);
+    var sug = document.getElementById('chat-suggestions');
     if (sug) sug.style.display = 'none';
   }
 
   function ayudaEnviar() {
-    const input = document.getElementById('chat-input');
+    var input = document.getElementById('chat-input');
     if (!input) return;
-    const txt = input.value.trim();
+    var txt = input.value.trim();
     if (!txt) return;
-    input.value = '';
     ayudaFaq(txt);
   }
 
   function ayudaSugerencias(val) {
-    const sug = document.getElementById('chat-suggestions');
+    var sug = document.getElementById('chat-suggestions');
     if (!sug) return;
-    // Mostrar sugerencias solo cuando el campo está vacío (al inicio)
     sug.style.display = val ? 'none' : 'flex';
   }
 
   function ayudaLimpiarChat() {
-    const wrap = document.getElementById('chat-messages');
+    var wrap = document.getElementById('chat-messages');
     if (!wrap) return;
-    wrap.innerHTML = '<div class="chat-msg asistente"><div class="chat-bubble">¡Hola! Soy el asistente de <b>AprendeBA</b>. Podés preguntarme sobre matriculación, presentismo, legajos, QRs o el kiosco de entrada. ¿En qué te ayudo?</div><div class="chat-time">' + ayudaHora() + '</div></div>';
-    const sug = document.getElementById('chat-suggestions');
+    wrap.innerHTML = '<div class="chat-msg asistente"><div class="chat-bubble">Hola! Soy el asistente de <b>AprendeBA</b>. Podés preguntarme sobre matriculación, presentismo, legajos, QRs o el kiosco de entrada. En qué te ayudo?</div><div class="chat-time">Ahora</div></div>';
+    var sug = document.getElementById('chat-suggestions');
     if (sug) sug.style.display = 'flex';
   }
 </script>
