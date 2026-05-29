@@ -1,7 +1,7 @@
 // AprendeBA · Acceso Presentismo — Service Worker
 const CACHE = 'aprendeba-kiosco-v1';
 const ASSETS = [
-  './kiosco-entrada.html',
+  './acceso-presentismo.html',
   './manifest.json',
   './icon-192.png',
   './icon-512.png',

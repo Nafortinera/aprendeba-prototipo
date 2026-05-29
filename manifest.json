@@ -2,7 +2,7 @@
   "name": "AprendeBA · Acceso Presentismo",
   "short_name": "Acceso Pres.",
   "description": "Registro de asistencia por QR — AprendeBA GCBA",
-  "start_url": "./kiosco-entrada.html",
+  "start_url": "./acceso-presentismo.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0D1F2D",
@@ -17,7 +17,7 @@
   "shortcuts": [
     {
       "name": "Iniciar registro",
-      "url": "./kiosco-entrada.html",
+      "url": "./acceso-presentismo.html",
       "description": "Abrir el registro de asistencia por QR"
     }
   ]

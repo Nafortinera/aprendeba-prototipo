@@ -4828,7 +4828,7 @@
 
   function generarQRsAlumnos() {
     if (!presState.seccionId) { toast('Seleccioná año y sección primero','error'); return; }
-    // Guardar SECCIONES en localStorage para qrs-imprimibles.html y kiosco-entrada.html
+    // Guardar SECCIONES en localStorage para qrs-imprimibles.html y acceso-presentismo.html
     try { localStorage.setItem('aprendeba_secciones', JSON.stringify(SECCIONES)); } catch(e) {}
     const baseUrl = location.origin && location.origin !== 'null'
       ? location.origin + location.pathname.replace(/[^/]*$/, '')
@@ -4842,7 +4842,7 @@
     const baseUrl = location.origin && location.origin !== 'null'
       ? location.origin + location.pathname.replace(/[^/]*$/, '')
       : '';
-    window.open(`${baseUrl}kiosco-entrada.html`, '_blank');
+    window.open(`${baseUrl}acceso-presentismo.html`, '_blank');
   }
 
   /* ===== QR del aula (en modal) ===== */
