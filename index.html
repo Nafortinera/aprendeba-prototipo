@@ -1861,7 +1861,7 @@
     <a class="nav-item" data-tip="QRs para alumnos" data-modulo="qrs" onclick="cambiarModulo('qrs', this)">
       <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h2v2h-2zM18 14h3M14 18h2M18 18h3M20 14v6"/></svg>
     </a>
-    <a class="nav-item" data-tip="Toma de asistencia" data-modulo="kiosco" onclick="cambiarModulo('kiosco', this)">
+    <a class="nav-item" data-tip="Acceso Presentismo" data-modulo="kiosco" onclick="cambiarModulo('kiosco', this)">
       <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M9 8l2 2 4-4"/></svg>
     </a>
     <div class="spacer"></div>
@@ -3113,8 +3113,8 @@
 
         <div class="page-header">
           <div>
-            <h1 class="page-title">Toma de asistencia</h1>
-            <p class="page-subtitle">Escaneá el QR del alumno o dejá la pantalla en la entrada para que los alumnos se registren solos.</p>
+            <h1 class="page-title">Acceso Presentismo</h1>
+            <p class="page-subtitle">Acceso directo al registro de asistencia — los alumnos escanean su QR o el operador los marca desde esta pantalla.</p>
           </div>
         </div>
 
@@ -6634,14 +6634,17 @@ ${tablas}
   function ayudaFaq(pregunta) {
     var input = document.getElementById('chat-input');
     if (input) input.value = '';
-    ayudaAgregarMsg(pregunta, 'usuario');
-    var typing = ayudaTyping();
-    setTimeout(function() {
-      try { if (typing && typing.parentNode) typing.parentNode.removeChild(typing); } catch(e) {}
-      ayudaAgregarMsg(ayudaBuscarRespuesta(pregunta), 'asistente');
-    }, 700);
     var sug = document.getElementById('chat-suggestions');
     if (sug) sug.style.display = 'none';
+    ayudaAgregarMsg(pregunta, 'usuario');
+    // Typing placeholder, then respuesta
+    var typing = ayudaTyping();
+    var _resp = ayudaBuscarRespuesta(pregunta);
+    window.setTimeout(function() {
+      var wrap = document.getElementById('chat-messages');
+      if (typing && wrap && wrap.contains(typing)) wrap.removeChild(typing);
+      ayudaAgregarMsg(_resp, 'asistente');
+    }, 600);
   }
 
   function ayudaEnviar() {
