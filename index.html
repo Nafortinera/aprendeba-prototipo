@@ -3073,6 +3073,93 @@
       <footer>Prototipo navegable · AprendeBA · Matriculación + Legajo + Presentismo + QRs + Toma de asistencia · CL 2026 · v3.0</footer>
 
     </div><!-- /page -->
+
+<!-- ====================================================
+       MÓDULO: Ayuda & Asistente Virtual
+  ===================================================== -->
+  <div id="modulo-ayuda" class="modulo">
+    <div class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Ayuda & Asistente Virtual</h1>
+          <p class="page-subtitle">Consultá dudas, accedé a guías y tutoriales del sistema.</p>
+        </div>
+      </div>
+
+      <div class="ayuda-layout">
+
+        <!-- ── Panel lateral ───────────────────────── -->
+        <aside class="ayuda-sidebar">
+
+          <div class="ayuda-block">
+            <div class="ayuda-block-title">Inicio rápido</div>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo matriculo un alumno?')">📋 Cómo matricular un alumno</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo registro la asistencia?')">✅ Cómo registrar asistencia</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo genero los QRs del aula?')">📱 Cómo generar QRs del aula</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo uso el kiosco de entrada?')">🖥 Cómo usar el kiosco</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo edito el legajo de un alumno?')">📁 Cómo editar el legajo</button>
+          </div>
+
+          <div class="ayuda-block">
+            <div class="ayuda-block-title">Validaciones frecuentes</div>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Cuántos dígitos tiene el DNI?')">🔢 Dígitos del DNI</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo se calcula el CUIL?')">🧮 Cálculo del CUIL</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Qué es la FEM?')">📅 ¿Qué es la FEM?</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Qué significa cada estado de asistencia?')">🟡 Estados de asistencia</button>
+            <button class="ayuda-link" onclick="ayudaFaq('¿Qué es el justificado?')">💙 ¿Qué es el Justificado?</button>
+          </div>
+
+          <div class="ayuda-block">
+            <div class="ayuda-block-title">Documentación</div>
+            <button class="ayuda-link ayuda-link-doc" onclick="toast('Documento en preparación','')">📄 Manual de usuario</button>
+            <button class="ayuda-link ayuda-link-doc" onclick="toast('Documento en preparación','')">📐 Especificaciones técnicas</button>
+            <button class="ayuda-link ayuda-link-doc" onclick="toast('Soporte: sstedu@buenosaires.gob.ar','')">✉️ Contactar soporte</button>
+          </div>
+
+        </aside>
+
+        <!-- ── Chat del asistente ───────────────────── -->
+        <div class="ayuda-chat-wrap">
+
+          <div class="chat-header">
+            <div class="chat-avatar">aBA</div>
+            <div>
+              <div class="chat-name">Asistente AprendeBA</div>
+              <div class="chat-status"><span class="chat-dot"></span> En línea</div>
+            </div>
+            <button class="chat-clear" onclick="ayudaLimpiarChat()" title="Limpiar conversación">🗑</button>
+          </div>
+
+          <div class="chat-messages" id="chat-messages">
+            <div class="chat-msg asistente">
+              <div class="chat-bubble">
+                ¡Hola! Soy el asistente de <b>AprendeBA</b>. Podés preguntarme sobre matriculación, presentismo, legajos, QRs o el kiosco de entrada. ¿En qué te ayudo?
+              </div>
+              <div class="chat-time">Ahora</div>
+            </div>
+          </div>
+
+          <div class="chat-suggestions" id="chat-suggestions">
+            <button onclick="ayudaFaq('¿Cómo matriculo un alumno?')">¿Cómo matriculo?</button>
+            <button onclick="ayudaFaq('¿Qué es la FEM?')">¿Qué es la FEM?</button>
+            <button onclick="ayudaFaq('¿Qué significa cada estado de asistencia?')">Estados de asistencia</button>
+          </div>
+
+          <div class="chat-input-wrap">
+            <input type="text" id="chat-input" class="chat-input"
+              placeholder="Escribí tu consulta..."
+              onkeydown="if(event.key==='Enter')ayudaEnviar()"
+              oninput="ayudaSugerencias(this.value)" />
+            <button class="chat-send" onclick="ayudaEnviar()">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   </div><!-- /main -->
 </div><!-- /app -->
 
@@ -6654,91 +6741,7 @@ Al seleccionar otro establecimiento, toda la información de la cabecera se actu
 </script>
 
 
-  <!-- ====================================================
-       MÓDULO: Ayuda & Asistente Virtual
-  ===================================================== -->
-  <div id="modulo-ayuda" class="modulo">
-    <div class="page">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">Ayuda & Asistente Virtual</h1>
-          <p class="page-subtitle">Consultá dudas, accedé a guías y tutoriales del sistema.</p>
-        </div>
-      </div>
-
-      <div class="ayuda-layout">
-
-        <!-- ── Panel lateral ───────────────────────── -->
-        <aside class="ayuda-sidebar">
-
-          <div class="ayuda-block">
-            <div class="ayuda-block-title">Inicio rápido</div>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo matriculo un alumno?')">📋 Cómo matricular un alumno</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo registro la asistencia?')">✅ Cómo registrar asistencia</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo genero los QRs del aula?')">📱 Cómo generar QRs del aula</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo uso el kiosco de entrada?')">🖥 Cómo usar el kiosco</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo edito el legajo de un alumno?')">📁 Cómo editar el legajo</button>
-          </div>
-
-          <div class="ayuda-block">
-            <div class="ayuda-block-title">Validaciones frecuentes</div>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Cuántos dígitos tiene el DNI?')">🔢 Dígitos del DNI</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Cómo se calcula el CUIL?')">🧮 Cálculo del CUIL</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Qué es la FEM?')">📅 ¿Qué es la FEM?</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Qué significa cada estado de asistencia?')">🟡 Estados de asistencia</button>
-            <button class="ayuda-link" onclick="ayudaFaq('¿Qué es el justificado?')">💙 ¿Qué es el Justificado?</button>
-          </div>
-
-          <div class="ayuda-block">
-            <div class="ayuda-block-title">Documentación</div>
-            <button class="ayuda-link ayuda-link-doc" onclick="toast('Documento en preparación','')">📄 Manual de usuario</button>
-            <button class="ayuda-link ayuda-link-doc" onclick="toast('Documento en preparación','')">📐 Especificaciones técnicas</button>
-            <button class="ayuda-link ayuda-link-doc" onclick="toast('Soporte: sstedu@buenosaires.gob.ar','')">✉️ Contactar soporte</button>
-          </div>
-
-        </aside>
-
-        <!-- ── Chat del asistente ───────────────────── -->
-        <div class="ayuda-chat-wrap">
-
-          <div class="chat-header">
-            <div class="chat-avatar">aBA</div>
-            <div>
-              <div class="chat-name">Asistente AprendeBA</div>
-              <div class="chat-status"><span class="chat-dot"></span> En línea</div>
-            </div>
-            <button class="chat-clear" onclick="ayudaLimpiarChat()" title="Limpiar conversación">🗑</button>
-          </div>
-
-          <div class="chat-messages" id="chat-messages">
-            <div class="chat-msg asistente">
-              <div class="chat-bubble">
-                ¡Hola! Soy el asistente de <b>AprendeBA</b>. Podés preguntarme sobre matriculación, presentismo, legajos, QRs o el kiosco de entrada. ¿En qué te ayudo?
-              </div>
-              <div class="chat-time">Ahora</div>
-            </div>
-          </div>
-
-          <div class="chat-suggestions" id="chat-suggestions">
-            <button onclick="ayudaFaq('¿Cómo matriculo un alumno?')">¿Cómo matriculo?</button>
-            <button onclick="ayudaFaq('¿Qué es la FEM?')">¿Qué es la FEM?</button>
-            <button onclick="ayudaFaq('¿Qué significa cada estado de asistencia?')">Estados de asistencia</button>
-          </div>
-
-          <div class="chat-input-wrap">
-            <input type="text" id="chat-input" class="chat-input"
-              placeholder="Escribí tu consulta..."
-              onkeydown="if(event.key==='Enter')ayudaEnviar()"
-              oninput="ayudaSugerencias(this.value)" />
-            <button class="chat-send" onclick="ayudaEnviar()">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- ====== MODAL: Buscador global de alumno ====== -->
   <div class="modal-overlay" id="modal-buscador-global" onclick="if(event.target===this)cerrarBuscadorGlobal()" style="display:none;align-items:flex-start;padding-top:60px;">
