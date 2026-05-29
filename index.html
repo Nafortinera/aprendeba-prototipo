@@ -6535,6 +6535,12 @@ ${tablas}
     const e = ESTABLECIMIENTOS.find(x => x.id === id);
     if (!e) return;
     estActualId = id;
+    // Sync con Acceso Presentismo (kiosco)
+    try {
+      localStorage.setItem('aprendeba_establecimientos', JSON.stringify(
+        ESTABLECIMIENTOS.map(x => ({ id:x.id, nombre:x.nombre, comuna:x.comuna, dep:x.dep }))
+      ));
+    } catch(err) {}
     document.getElementById('est-nombre').textContent = e.nombre + ' — ' + e.comuna;
     document.getElementById('est-dep').textContent = e.depLabel;
     document.getElementById('est-ciclo').textContent = e.ciclo;
