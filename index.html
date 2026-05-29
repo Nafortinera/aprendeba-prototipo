@@ -6636,15 +6636,11 @@ ${tablas}
     if (input) input.value = '';
     var sug = document.getElementById('chat-suggestions');
     if (sug) sug.style.display = 'none';
+    // Mensaje del usuario
     ayudaAgregarMsg(pregunta, 'usuario');
-    // Typing placeholder, then respuesta
-    var typing = ayudaTyping();
-    var _resp = ayudaBuscarRespuesta(pregunta);
-    window.setTimeout(function() {
-      var wrap = document.getElementById('chat-messages');
-      if (typing && wrap && wrap.contains(typing)) wrap.removeChild(typing);
-      ayudaAgregarMsg(_resp, 'asistente');
-    }, 600);
+    // Respuesta directa (sin setTimeout para evitar problemas de scope/timing)
+    var resp = ayudaBuscarRespuesta(pregunta);
+    ayudaAgregarMsg(resp, 'asistente');
   }
 
   function ayudaEnviar() {
